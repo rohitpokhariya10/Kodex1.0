@@ -1,0 +1,134 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html,
+body {
+height: 100%;
+width: 100%;
+}
+@font-face {
+    font-family: font1;
+    src: url(./d3tHnaQIAeqiE5hGcRw4mmgWYU.woff2);
+}
+@font-face {
+    font-family:font2 ;
+    src: url(./GrgcKwrN6d3Uz8EwcLHZxwEfC4.woff2);
+}
+@font-face {
+    font-family: font3;
+    src: url(./or3nQ6H-1_WfwkMZI_qYFrcdmg.woff2);
+}
+@font-face {
+    font-family: font3;
+    src: url(./v2q8JTTTs7McDMSEhnxAIBqd0.woff2);
+}
+@font-face {
+    font-family: font4;
+    src: url(./yDtI2UI8XcEg1W2je9XPN3Noo.woff2);
+}
+.wrapper{
+    height: 100%;
+    width: 100%;
+}
+nav{
+    height: 100px;
+    width: 100%;
+    background-color: #001D21;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0px 80px;
+    color: white;
+    font-family: font4;
+    padding: 0px 20px;
+}
+
+/* LOGO PART */
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo img{
+    height: 55px;
+    width: auto;
+}
+.logo h2{
+    font-size: 26px;
+    font-weight: 500;
+}
+
+/* LINKS PART */
+.left{
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+.left h4{
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    opacity: 0.85;
+    transition: 0.2s;
+}
+
+/* CONTACT BUTTON */
+.button button{
+    background-color: white;
+    color: #001D21;
+    padding: 14px 28px;
+    border-radius: 14px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    
+}
+.page1{
+    width: 100%;
+    background-color: #001D21;
+    min-height: calc(100vh - 100px);
+     padding: 60px 20px;
+    
+}
+.page1-text{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:30px;
+    color: white;
+}
+.page1-text h1{
+    font-size: 62px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.1;
+    text-align: center;
+    font-family: font1;
+   
+   
+}
+.page1-text  p{
+    font-family: font1;
+    width: 30% ;
+    text-align: center;
+     margin-bottom: 80px;
+}
+.page1-images{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     gap:20px;
+}
+.page1-images img{
+    margin-top: 20px;
+    width: 380px;
+    height:  450px;
+    border-radius: 15px;
+    object-fit: cover;
+    object-position: top;
+   
+
+}
