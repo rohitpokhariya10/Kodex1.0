@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:wght@600;700&display=swap");
 @import "tailwindcss";
 
 html,body ,#root{
@@ -7,20 +8,39 @@ html,body ,#root{
 }
 
 :root{
-  --page-bg: #f6f1e8;
+  --page-bg: #f3ede3;
   --surface: #fffdf8;
-  --surface-muted: #f1eadf;
+  --surface-muted: #f3ebde;
   --ink: #14213d;
   --ink-soft: #4f5d75;
   --accent: #e09f3e;
   --accent-deep: #c77d1f;
   --line: rgba(20, 33, 61, 0.1);
+  --hero-shadow: 0 30px 90px rgba(20, 33, 61, 0.08);
 }
 
 body{
   background:
-    radial-gradient(circle at top, rgba(224,159,62,0.14), transparent 32%),
-    linear-gradient(180deg, #fbf7f1 0%, var(--page-bg) 100%);
+    radial-gradient(circle at top left, rgba(224,159,62,0.16), transparent 24%),
+    radial-gradient(circle at top right, rgba(20,33,61,0.08), transparent 26%),
+    linear-gradient(180deg, #fcf8f2 0%, var(--page-bg) 52%, #efe7da 100%);
+  color: var(--ink);
+  font-family: "Manrope", sans-serif;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4{
+  font-family: "Fraunces", serif;
+}
+
+::selection{
+  background: rgba(224,159,62,0.22);
   color: var(--ink);
 }
 
@@ -28,12 +48,37 @@ body{
   box-sizing: border-box;
 }
 
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+button{
+  cursor: pointer;
+}
+
 .float-in{
-  animation: floatIn 0.7s ease both;
+  animation: floatIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .drift{
   animation: drift 8s ease-in-out infinite;
+}
+
+.soft-grid{
+  position: relative;
+}
+
+.soft-grid::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(20, 33, 61, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 33, 61, 0.04) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(180deg, rgba(0,0,0,0.35), transparent 92%);
 }
 
 .shine-sweep{
@@ -57,11 +102,11 @@ body{
 @keyframes floatIn{
   from{
     opacity: 0;
-    transform: translateY(22px);
+    transform: translateY(24px) scale(0.985);
   }
   to{
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 

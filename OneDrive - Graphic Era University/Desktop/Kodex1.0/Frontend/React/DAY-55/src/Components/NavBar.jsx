@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { NavLink } from "react-router"
+import { NavLink, useNavigate } from "react-router"
 import { CartStore } from "../Context/CartContext"
 
 const userAvatar =
@@ -23,32 +23,39 @@ const userAvatar =
 const NavBar = () => {
 
   let {cartLength} = useContext(CartStore)
+  let navigate = useNavigate()//Auth.jsx me navigate krane ke lie 
   return (
-    <div className='sticky top-0 z-50 border-b border-[#14213d]/10 bg-[#fffaf2]/92 px-3 py-3 text-[#14213d] backdrop-blur sm:px-4 md:px-6 lg:px-10'>
+    <div className='sticky top-0 z-50 border-b border-white/40 bg-[#f9f3e9]/80 px-3 py-3 text-[#14213d] backdrop-blur-xl sm:px-4 md:px-6 lg:px-10'>
       <div className='mx-auto flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-3 sm:min-h-16 sm:flex-nowrap'>
       <div className="min-w-0 flex-1">
-      <h1  className="text-lg font-black uppercase tracking-[0.14em] text-[#14213d] sm:text-xl sm:tracking-[0.2em] md:text-2xl">Sasta amazon</h1>
-      <span className="hidden text-[10px] uppercase tracking-[0.34em] text-[#c77d1f] sm:block sm:text-xs">Well-priced essentials</span>
+      <span className="inline-flex rounded-full border border-[#e09f3e]/25 bg-white/80 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.34em] text-[#c77d1f]">Curated shop</span>
+      <h1  className="mt-3 text-2xl font-bold tracking-[-0.04em] text-[#14213d] sm:text-3xl">Sasta Amazon</h1>
+      <span className="mt-1 hidden text-[11px] font-semibold uppercase tracking-[0.32em] text-[#6b7288] sm:block">Smooth shopping experience</span>
       </div>
-      <div className='order-3 flex w-full items-center justify-center gap-2 rounded-full border border-[#14213d]/10 bg-white p-1.5 text-sm font-semibold shadow-[0_10px_30px_rgba(20,33,61,0.06)] sm:order-2 sm:w-auto sm:justify-start sm:gap-3 sm:text-base'>
+      <div className='order-3 flex w-full items-center justify-center gap-2 rounded-full border border-white/80 bg-white/90 p-1.5 text-sm font-semibold shadow-[0_14px_40px_rgba(20,33,61,0.08)] sm:order-2 sm:w-auto sm:justify-start sm:gap-3 sm:text-base'>
         <NavLink to='/'
-        className={({isActive}) => `flex-1 rounded-full px-4 py-2.5 text-center transition-all duration-300 sm:flex-none ${isActive ? "bg-[#14213d] text-white" : "text-[#4f5d75] hover:bg-[#f1eadf] hover:text-[#14213d]"}` }>
+        className={({isActive}) => `flex-1 rounded-full px-4 py-2.5 text-center transition-all duration-300 sm:flex-none ${isActive ? "bg-[#14213d] text-white shadow-[0_10px_24px_rgba(20,33,61,0.22)]" : "text-[#4f5d75] hover:bg-[#f3ebde] hover:text-[#14213d]"}` }>
           Home
         </NavLink>
 
          <NavLink to='/cart'
          
-        className={({isActive}) => `relative flex-1 rounded-full px-4 py-2.5 text-center transition-all duration-300 sm:flex-none ${isActive ? "bg-[#14213d] text-white" : "text-[#4f5d75] hover:bg-[#f1eadf] hover:text-[#14213d]"}` }>
+        className={({isActive}) => `relative flex-1 rounded-full px-4 py-2.5 text-center transition-all duration-300 sm:flex-none ${isActive ? "bg-[#14213d] text-white shadow-[0_10px_24px_rgba(20,33,61,0.22)]" : "text-[#4f5d75] hover:bg-[#f3ebde] hover:text-[#14213d]"}` }>
           Cart <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#e09f3e] px-1 text-[10px] font-bold text-[#14213d]">{cartLength}</span>
         </NavLink>
       </div>
 
-      <div className="order-2 flex items-center rounded-full border border-[#14213d]/10 bg-white p-1.5 shadow-[0_10px_30px_rgba(20,33,61,0.06)] sm:order-3">
+      <div className="order-2 flex items-center gap-3 rounded-full border border-white/80 bg-white/90 p-1.5 pr-4 shadow-[0_14px_40px_rgba(20,33,61,0.08)] sm:order-3">
         <img
+          onClick={()=> navigate('/auth')}
           src={userAvatar}
           alt="User profile"
           className="h-10 w-10 rounded-full border-2 border-[#e09f3e] bg-white object-cover p-0.5 transition-transform duration-300 hover:scale-105 sm:h-11 sm:w-11"
         />
+        <div className="hidden sm:block">
+          <p className="text-sm font-extrabold text-[#14213d]">Guest user</p>
+          <p className="text-xs font-medium text-[#6b7288]">Browse with confidence</p>
+        </div>
       </div>
       </div>
     </div>
