@@ -1,0 +1,53 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+/* page center */
+html,body{
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #111;   /* off mood */
+  transition: background-color 0.4s ease;
+  font-family: sans-serif;
+}
+
+/* bulb */
+.bulb{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.796);   /* off color */
+  margin-bottom: 30px;
+  transition: all 0.4s ease;
+}
+
+/* glowing state (JS se add hoga) */
+.bulb.on{
+  background-color: #ffd54f;
+  box-shadow: 
+    0 0 20px #ffd54f,
+    0 0 40px #ffd54f,
+    0 0 60px #ffd54f;
+}
+
+/* button */
+.btn{
+  padding: 10px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+/* button press effect */
+.btn:active{
+  transform: scale(0.95);
+}

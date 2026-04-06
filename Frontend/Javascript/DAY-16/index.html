@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Functions Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>JavaScript Practise Question Showcase</h1>
+            <p>Interactive demonstrations of 40 JavaScript functions</p>
+        </header>
+
+        <!-- Basic Functions (Q1-Q12) -->
+        <div class="category-header">
+            <h2>📝 Basic Functions</h2>
+        </div>
+        <div class="functions-grid">
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q1()</span>
+                    <span class="function-number">Q1</span>
+                </div>
+                <p class="function-description">Prints "Hello world" to console</p>
+                <div class="demo-section">
+                    <button class="btn" onclick="runQ1()">Run Function</button>
+                    <div id="result-q1" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q2(a, b)</span>
+                    <span class="function-number">Q2</span>
+                </div>
+                <p class="function-description">Adds two numbers and returns the sum</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Number A:</label>
+                        <input type="number" id="q2-a" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label>Number B:</label>
+                        <input type="number" id="q2-b" value="20">
+                    </div>
+                    <button class="btn" onclick="runQ2()">Calculate Sum</button>
+                    <div id="result-q2" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q3(name)</span>
+                    <span class="function-number">Q3</span>
+                </div>
+                <p class="function-description">Accepts a name parameter (console logs it)</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Name:</label>
+                        <input type="text" id="q3-name" value="Rohit">
+                    </div>
+                    <button class="btn" onclick="runQ3()">Run Function</button>
+                    <div id="result-q3" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q4(number)</span>
+                    <span class="function-number">Q4</span>
+                </div>
+                <p class="function-description">Returns the square of a number</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Number:</label>
+                        <input type="number" id="q4-num" value="5">
+                    </div>
+                    <button class="btn" onclick="runQ4()">Calculate Square</button>
+                    <div id="result-q4" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q5(number)</span>
+                    <span class="function-number">Q5</span>
+                </div>
+                <p class="function-description">Checks if a number is even or odd</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Number:</label>
+                        <input type="number" id="q5-num" value="7">
+                    </div>
+                    <button class="btn" onclick="runQ5()">Check Even/Odd</button>
+                    <div id="result-q5" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q9(array)</span>
+                    <span class="function-number">Q9</span>
+                </div>
+                <p class="function-description">Prints all elements of an array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q9-arr" value="1, 2, 4">
+                    </div>
+                    <button class="btn" onclick="runQ9()">Print Elements</button>
+                    <div id="result-q9" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q10(array)</span>
+                    <span class="function-number">Q10</span>
+                </div>
+                <p class="function-description">Returns the length of an array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q10-arr" value="10, 20, 30">
+                    </div>
+                    <button class="btn" onclick="runQ10()">Get Length</button>
+                    <div id="result-q10" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q11(a, b)</span>
+                    <span class="function-number">Q11</span>
+                </div>
+                <p class="function-description">Multiplies two numbers</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Number A:</label>
+                        <input type="number" id="q11-a" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label>Number B:</label>
+                        <input type="number" id="q11-b" value="6">
+                    </div>
+                    <button class="btn" onclick="runQ11()">Multiply</button>
+                    <div id="result-q11" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q12(a, b)</span>
+                    <span class="function-number">Q12</span>
+                </div>
+                <p class="function-description">Subtracts b from a</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Number A:</label>
+                        <input type="number" id="q12-a" value="10">
+                    </div>
+                    <div class="input-group">
+                        <label>Number B:</label>
+                        <input type="number" id="q12-b" value="3">
+                    </div>
+                    <button class="btn" onclick="runQ12()">Subtract</button>
+                    <div id="result-q12" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arrow Functions (Q13-Q18) -->
+        <div class="category-header">
+            <h2>🎯 Arrow Functions</h2>
+        </div>
+        <div class="functions-grid">
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q13(str)</span>
+                    <span class="function-number">Q13</span>
+                </div>
+                <p class="function-description">Converts string to uppercase</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String:</label>
+                        <input type="text" id="q13-str" value="hello world">
+                    </div>
+                    <button class="btn" onclick="runQ13()">Convert to Uppercase</button>
+                    <div id="result-q13" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q14(num)</span>
+                    <span class="function-number">Q14</span>
+                </div>
+                <p class="function-description">Returns the cube of a number</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Number:</label>
+                        <input type="number" id="q14-num" value="3">
+                    </div>
+                    <button class="btn" onclick="runQ14()">Calculate Cube</button>
+                    <div id="result-q14" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q15(str1, str2)</span>
+                    <span class="function-number">Q15</span>
+                </div>
+                <p class="function-description">Concatenates two strings</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String 1:</label>
+                        <input type="text" id="q15-str1" value="Hello ">
+                    </div>
+                    <div class="input-group">
+                        <label>String 2:</label>
+                        <input type="text" id="q15-str2" value="World">
+                    </div>
+                    <button class="btn" onclick="runQ15()">Concatenate</button>
+                    <div id="result-q15" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q16(n1, n2)</span>
+                    <span class="function-number">Q16</span>
+                </div>
+                <p class="function-description">Compares two numbers</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Number 1:</label>
+                        <input type="number" id="q16-n1" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label>Number 2:</label>
+                        <input type="number" id="q16-n2" value="8">
+                    </div>
+                    <button class="btn" onclick="runQ16()">Compare</button>
+                    <div id="result-q16" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q17(n1, n2, n3)</span>
+                    <span class="function-number">Q17</span>
+                </div>
+                <p class="function-description">Finds the smallest of 3 numbers</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Number 1:</label>
+                        <input type="number" id="q17-n1" value="5">
+                    </div>
+                    <div class="input-group">
+                        <label>Number 2:</label>
+                        <input type="number" id="q17-n2" value="2">
+                    </div>
+                    <div class="input-group">
+                        <label>Number 3:</label>
+                        <input type="number" id="q17-n3" value="8">
+                    </div>
+                    <button class="btn" onclick="runQ17()">Find Smallest</button>
+                    <div id="result-q17" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q18(str)</span>
+                    <span class="function-number">Q18</span>
+                </div>
+                <p class="function-description">Prints a string 5 times</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String:</label>
+                        <input type="text" id="q18-str" value="hi">
+                    </div>
+                    <button class="btn" onclick="runQ18()">Print 5 Times</button>
+                    <div id="result-q18" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Array Manipulation (Q19-Q25) -->
+        <div class="category-header">
+            <h2>🔧 Array Manipulation</h2>
+        </div>
+        <div class="functions-grid">
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q19(arr)</span>
+                    <span class="function-number">Q19</span>
+                </div>
+                <p class="function-description">Returns indices of even numbers</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q19-arr" value="1, 2, 3, 4, 5, 6">
+                    </div>
+                    <button class="btn" onclick="runQ19()">Get Even Indices</button>
+                    <div id="result-q19" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q20(arr)</span>
+                    <span class="function-number">Q20</span>
+                </div>
+                <p class="function-description">Returns only odd numbers</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q20-arr" value="1, 2, 3, 4, 5, 6">
+                    </div>
+                    <button class="btn" onclick="runQ20()">Get Odd Numbers</button>
+                    <div id="result-q20" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q21(arr)</span>
+                    <span class="function-number">Q21</span>
+                </div>
+                <p class="function-description">Removes and returns first element (shift)</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q21-arr" value="1, 2, 3, 4">
+                    </div>
+                    <button class="btn" onclick="runQ21()">Shift First</button>
+                    <div id="result-q21" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q22(arr)</span>
+                    <span class="function-number">Q22</span>
+                </div>
+                <p class="function-description">Adds element to start (unshift) and returns length</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q22-arr" value="2, 3, 4">
+                    </div>
+                    <button class="btn" onclick="runQ22()">Unshift 1</button>
+                    <div id="result-q22" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q23(arr)</span>
+                    <span class="function-number">Q23</span>
+                </div>
+                <p class="function-description">Removes and returns last element (pop)</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q23-arr" value="1, 2, 3, 4, 5">
+                    </div>
+                    <button class="btn" onclick="runQ23()">Pop Last</button>
+                    <div id="result-q23" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q24(arr)</span>
+                    <span class="function-number">Q24</span>
+                </div>
+                <p class="function-description">Adds 6 to end (push) and returns array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q24-arr" value="1, 2, 3, 4, 5">
+                    </div>
+                    <button class="btn" onclick="runQ24()">Push 6</button>
+                    <div id="result-q24" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q25(arr)</span>
+                    <span class="function-number">Q25</span>
+                </div>
+                <p class="function-description">Removes 2 elements starting at index 1 (splice)</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q25-arr" value="1, 2, 3, 4">
+                    </div>
+                    <button class="btn" onclick="runQ25()">Splice Array</button>
+                    <div id="result-q25" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- String Functions -->
+        <div class="category-header">
+            <h2>🔤 String Functions</h2>
+        </div>
+        <div class="functions-grid">
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q6(string)</span>
+                    <span class="function-number">Q6</span>
+                </div>
+                <p class="function-description">Returns the last character of a string</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String:</label>
+                        <input type="text" id="q6-str" value="Hello">
+                    </div>
+                    <button class="btn" onclick="runQ6()">Get Last Char</button>
+                    <div id="result-q6" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q26(str)</span>
+                    <span class="function-number">Q26</span>
+                </div>
+                <p class="function-description">Counts how many 'a' characters in a string</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String:</label>
+                        <input type="text" id="q26-str" value="banana">
+                    </div>
+                    <button class="btn" onclick="runQ26()">Count 'a'</button>
+                    <div id="result-q26" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q27(string)</span>
+                    <span class="function-number">Q27</span>
+                </div>
+                <p class="function-description">Checks if string contains vowels</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String:</label>
+                        <input type="text" id="q27-str" value="hi rohit">
+                    </div>
+                    <button class="btn" onclick="runQ27()">Check Vowels</button>
+                    <div id="result-q27" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">reverseStr(str)</span>
+                    <span class="function-number">Q28</span>
+                </div>
+                <p class="function-description">Prints string in reverse order</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String:</label>
+                        <input type="text" id="q28-str" value="rohit">
+                    </div>
+                    <button class="btn" onclick="runQ28()">Reverse String</button>
+                    <div id="result-q28" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">checkEmpty(str)</span>
+                    <span class="function-number">Q29</span>
+                </div>
+                <p class="function-description">Checks if a string is empty</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String:</label>
+                        <input type="text" id="q29-str" placeholder="Leave empty or add text">
+                    </div>
+                    <button class="btn" onclick="runQ29()">Check Empty</button>
+                    <div id="result-q29" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">checkSpaces(str)</span>
+                    <span class="function-number">Q30</span>
+                </div>
+                <p class="function-description">Counts spaces in a string</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>String:</label>
+                        <input type="text" id="q30-str" value="Hello World JavaScript">
+                    </div>
+                    <button class="btn" onclick="runQ30()">Count Spaces</button>
+                    <div id="result-q30" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Array Functions -->
+        <div class="category-header">
+            <h2>📊 Array Functions</h2>
+        </div>
+        <div class="functions-grid">
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q7(array)</span>
+                    <span class="function-number">Q7</span>
+                </div>
+                <p class="function-description">Returns the first element of an array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q7-arr" value="10, 20, 30, 40">
+                    </div>
+                    <button class="btn" onclick="runQ7()">Get First Element</button>
+                    <div id="result-q7" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">q8(array)</span>
+                    <span class="function-number">Q8</span>
+                </div>
+                <p class="function-description">Returns the last element of an array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q8-arr" value="10, 20, 30, 40">
+                    </div>
+                    <button class="btn" onclick="runQ8()">Get Last Element</button>
+                    <div id="result-q8" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">totalSum(arr)</span>
+                    <span class="function-number">Q31</span>
+                </div>
+                <p class="function-description">Returns sum of all numbers in array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q31-arr" value="1, 2, 3, 4, 5">
+                    </div>
+                    <button class="btn" onclick="runQ31()">Calculate Sum</button>
+                    <div id="result-q31" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">biggestNumber(arr)</span>
+                    <span class="function-number">Q32</span>
+                </div>
+                <p class="function-description">Finds the largest number in array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q32-arr" value="2, 5, 99, 123, 45">
+                    </div>
+                    <button class="btn" onclick="runQ32()">Find Largest</button>
+                    <div id="result-q32" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">smallestNumber(arr)</span>
+                    <span class="function-number">Q33</span>
+                </div>
+                <p class="function-description">Finds the smallest number in array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q33-arr" value="2, 5, 99, 123, 45">
+                    </div>
+                    <button class="btn" onclick="runQ33()">Find Smallest</button>
+                    <div id="result-q33" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">doubleEachNumber(arr)</span>
+                    <span class="function-number">Q34</span>
+                </div>
+                <p class="function-description">Doubles each number in an array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q34-arr" value="1, 2, 3, 4, 5, 6">
+                    </div>
+                    <button class="btn" onclick="runQ34()">Double Numbers</button>
+                    <div id="result-q34" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">removeDuplicates(arr)</span>
+                    <span class="function-number">Q35</span>
+                </div>
+                <p class="function-description">Removes duplicate items from array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q35-arr" value="1, 1, 3, 4, 5, 5, 4, 8, 9">
+                    </div>
+                    <button class="btn" onclick="runQ35()">Remove Duplicates</button>
+                    <div id="result-q35" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">positiveNumbers(arr)</span>
+                    <span class="function-number">Q36</span>
+                </div>
+                <p class="function-description">Returns only positive numbers from array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q36-arr" value="-1, 7, -5, 5, -4, 2, 0, -9">
+                    </div>
+                    <button class="btn" onclick="runQ36()">Get Positives</button>
+                    <div id="result-q36" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">checkDivisibleBy10(arr)</span>
+                    <span class="function-number">Q37</span>
+                </div>
+                <p class="function-description">Returns numbers divisible by 10</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q37-arr" value="1, 2, 10, 5, 100, 20">
+                    </div>
+                    <button class="btn" onclick="runQ37()">Check Divisible</button>
+                    <div id="result-q37" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">printEachIndex(arr)</span>
+                    <span class="function-number">Q38</span>
+                </div>
+                <p class="function-description">Prints the index of each item in array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q38-arr" value="1, 2, 3, 4, 5, 6">
+                    </div>
+                    <button class="btn" onclick="runQ38()">Print Indices</button>
+                    <div id="result-q38" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">middleElement(arr)</span>
+                    <span class="function-number">Q39</span>
+                </div>
+                <p class="function-description">Returns the middle element of array</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q39-arr" value="1, 2, 3, 4, 5">
+                    </div>
+                    <button class="btn" onclick="runQ39()">Get Middle</button>
+                    <div id="result-q39" class="result"></div>
+                </div>
+            </div>
+
+            <div class="function-card">
+                <div class="function-header">
+                    <span class="function-name">removeFromMiddle(arr)</span>
+                    <span class="function-number">Q40</span>
+                </div>
+                <p class="function-description">Removes 1 element from middle using splice</p>
+                <div class="demo-section">
+                    <div class="input-group">
+                        <label>Array (comma-separated):</label>
+                        <input type="text" id="q40-arr" value="1, 2, 3, 4">
+                    </div>
+                    <button class="btn" onclick="runQ40()">Remove Middle</button>
+                    <div id="result-q40" class="result"></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Created with ❤️ | Pahadi Pikachu:)</p>
+        </footer>
+    </div>
+
+      <script src="script.js"></script>
+      <!-- down one is for allSolution.js -->
+      <!-- <script src="allSolutions.js"></script> -->
+</body>
+</html>

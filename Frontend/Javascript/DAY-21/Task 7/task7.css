@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f0f4ff;
+  --surface: #ffffff;
+  --text: #0f0f1a;
+  --muted: #b0b8d0;
+  --accent: #4f46e5;
+  --accent-dim: rgba(79, 70, 229, 0.08);
+  --accent-glow: rgba(79, 70, 229, 0.2);
+  --border: #dde2f0;
+  --border-focus: #4f46e5;
+  --placeholder: #c4cade;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(79, 70, 229, 0.07) 0%, transparent 60%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Geist Mono', monospace;
+}
+
+/* Dot grid */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  width: min(480px, 90vw);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  box-shadow:
+    0 2px 4px rgba(79, 70, 229, 0.04),
+    0 12px 48px rgba(79, 70, 229, 0.08);
+  overflow: hidden;
+}
+
+/* Top label bar */
+main::before {
+  content: 'live preview';
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 20px;
+}
+
+/* ── Input ── */
+input[type="text"] {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--surface);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  padding: 22px 20px;
+  outline: none;
+  width: 100%;
+  letter-spacing: 0.02em;
+  transition: background 0.2s ease, border-color 0.25s ease;
+  caret-color: var(--accent);
+}
+
+input[type="text"]::placeholder {
+  color: var(--placeholder);
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+/* Animated accent underline on focus */
+input[type="text"] {
+  position: relative;
+}
+
+input[type="text"]:focus {
+  background: var(--accent-dim);
+  border-bottom-color: var(--accent);
+  box-shadow: 0 1px 0 0 var(--accent);
+}
+
+/* ── Output paragraph ── */
+p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.6rem;
+  font-style: normal;
+  color: var(--text);
+  padding: 28px 20px 32px;
+  min-height: 90px;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  word-break: break-word;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+/* Empty state */
+p:empty::before {
+  content: 'your text appears here…';
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 300;
+  color: var(--placeholder);
+  letter-spacing: 0.05em;
+}
+
+/* Cursor blink when p has content */
+p:not(:empty)::after {
+  content: '|';
+  display: inline-block;
+  color: var(--accent);
+  font-style: normal;
+  font-family: 'Geist Mono', monospace;
+  font-size: 1.2rem;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+/* Character count footer */
+main::after {
+  content: '0 chars';
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 10px 20px;
+  text-align: right;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

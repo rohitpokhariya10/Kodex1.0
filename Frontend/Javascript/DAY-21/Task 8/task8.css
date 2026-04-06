@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi&family=DM+Sans:wght@400;500&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --saffron: #FF9933;
+  --white: #FFFFFF;
+  --green: #138808;
+  --navy: #000080;
+  --bg: #1a1a2e;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,153,51,0.06) 0%, transparent 60%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ── Flag wrapper ── */
+main {
+  position: relative;
+  width: 420px;
+  height: 280px;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,0.06),
+    0 24px 80px rgba(0,0,0,0.6),
+    0 4px 16px rgba(0,0,0,0.4);
+  border-radius: 2px;
+  overflow: hidden;
+
+  /* Gentle wave animation */
+  transform-origin: left center;
+  animation: wave 4s ease-in-out infinite;
+}
+
+/* ── Default background (no flag) ── */
+main {
+  background: white;
+  transition: background 0.6s ease;
+}
+
+/* ── Flag visible on hover via JS ── */
+.flag {
+  background: linear-gradient(
+    to bottom,
+    var(--saffron) 0%,
+    var(--saffron) 33.33%,
+    var(--white)   33.33%,
+    var(--white)   66.66%,
+    var(--green)   66.66%,
+    var(--green)   100%
+  );
+}
+
+/* ── Three stripes ── */
+main::before,
+main::after,
+.box {
+  display: block;
+  width: 100%;
+  flex: 1;
+}
+
+/* Saffron stripe */
+main::before {
+  content: '';
+}
+
+
+/* Green stripe */
+main::after {
+  content: '';
+}
+
+
+/* 24 Spokes using conic-gradient */
+.chakra {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--navy) 1.5deg,
+    transparent 2.5deg,
+    transparent 15deg,
+    var(--navy) 16.5deg,
+    transparent 17.5deg,
+    transparent 30deg,
+    var(--navy) 31.5deg,
+    transparent 32.5deg,
+    transparent 45deg,
+    var(--navy) 46.5deg,
+    transparent 47.5deg,
+    transparent 60deg,
+    var(--navy) 61.5deg,
+    transparent 62.5deg,
+    transparent 75deg,
+    var(--navy) 76.5deg,
+    transparent 77.5deg,
+    transparent 90deg,
+    var(--navy) 91.5deg,
+    transparent 92.5deg,
+    transparent 105deg,
+    var(--navy) 106.5deg,
+    transparent 107.5deg,
+    transparent 120deg,
+    var(--navy) 121.5deg,
+    transparent 122.5deg,
+    transparent 135deg,
+    var(--navy) 136.5deg,
+    transparent 137.5deg,
+    transparent 150deg,
+    var(--navy) 151.5deg,
+    transparent 152.5deg,
+    transparent 165deg,
+    var(--navy) 166.5deg,
+    transparent 167.5deg,
+    transparent 180deg,
+    var(--navy) 181.5deg,
+    transparent 182.5deg,
+    transparent 195deg,
+    var(--navy) 196.5deg,
+    transparent 197.5deg,
+    transparent 210deg,
+    var(--navy) 211.5deg,
+    transparent 212.5deg,
+    transparent 225deg,
+    var(--navy) 226.5deg,
+    transparent 227.5deg,
+    transparent 240deg,
+    var(--navy) 241.5deg,
+    transparent 242.5deg,
+    transparent 255deg,
+    var(--navy) 256.5deg,
+    transparent 257.5deg,
+    transparent 270deg,
+    var(--navy) 271.5deg,
+    transparent 272.5deg,
+    transparent 285deg,
+    var(--navy) 286.5deg,
+    transparent 287.5deg,
+    transparent 300deg,
+    var(--navy) 301.5deg,
+    transparent 302.5deg,
+    transparent 315deg,
+    var(--navy) 316.5deg,
+    transparent 317.5deg,
+    transparent 330deg,
+    var(--navy) 331.5deg,
+    transparent 332.5deg,
+    transparent 345deg,
+    var(--navy) 346.5deg,
+    transparent 347.5deg,
+    transparent 360deg
+  );
+
+  /* Mask to only show spokes (not center or outer) */
+  -webkit-mask: radial-gradient(
+    circle,
+    transparent 10px,
+    black 11px,
+    black 33px,
+    transparent 34px
+  );
+  mask: radial-gradient(
+    circle,
+    transparent 10px,
+    black 11px,
+    black 33px,
+    transparent 34px
+  );
+
+
+}
+
+/* ── Flag pole ── */
+body::before {
+  content: '';
+  width: 6px;
+  height: 340px;
+  background: linear-gradient(180deg, #d4af70 0%, #a07840 50%, #8b6520 100%);
+  border-radius: 3px;
+  position: absolute;
+  left: calc(50% - 213px);
+  top: calc(50% - 170px);
+  transform: translateX(-50%);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.4);
+  z-index: 10;
+}
+
+/* ── Label ── */
+body::after {
+  content: 'भारत India';
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-top: 8px;
+  position: absolute;
+  bottom: 48px;
+}
+
+/* ── Animations ── */
+@keyframes wave {
+  0%, 100% { transform: skewY(0deg) scaleX(1); }
+  25%       { transform: skewY(0.4deg) scaleX(1.005); }
+  50%       { transform: skewY(-0.4deg) scaleX(0.998); }
+  75%       { transform: skewY(0.3deg) scaleX(1.003); }
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}

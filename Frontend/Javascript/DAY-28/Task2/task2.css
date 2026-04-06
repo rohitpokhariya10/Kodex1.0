@@ -1,0 +1,186 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg: #181717;
+    --surface: #242222;
+    --surface-hover: #2c2a2a;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.18);
+    --accent: #0095ff;
+    --accent-glow: rgba(0,149,255,0.25);
+    --danger: #C1121F;
+    --text-primary: #f0eeed;
+    --text-secondary: #9e9a9a;
+    --radius: 14px;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+  }
+
+  main {
+    min-height: 100%;
+    width: 100%;
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,149,255,0.07) 0%, transparent 60%),
+      var(--bg);
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    padding-left: 2px;
+  }
+
+  .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    color: var(--text-primary);
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    gap: 16px;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .card-meta {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text-secondary);
+  }
+
+  .card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(0,149,255,0.12);
+    color: var(--accent);
+    border: 1px solid rgba(0,149,255,0.2);
+    white-space: nowrap;
+  }
+
+  .card-badge.danger {
+    background: rgba(193,18,31,0.1);
+    color: var(--danger);
+    border-color: rgba(193,18,31,0.2);
+  }
+
+  .card button {
+    border-radius: 8px;
+    padding: 10px 20px;
+    background-color: var(--accent);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    box-shadow: 0 0 0 0 var(--accent-glow);
+  }
+
+  .card button:hover {
+    background-color: #1aa3ff;
+    box-shadow: 0 0 0 6px var(--accent-glow);
+  }
+
+  .card button:active {
+    transform: scale(0.96);
+    background-color: #0080dd;
+  }
+
+  .card button.secondary {
+    background-color: transparent;
+    border: 1px solid var(--border-hover);
+    color: var(--text-secondary);
+  }
+
+  .card button.secondary:hover {
+    background-color: rgba(255,255,255,0.05);
+    color: var(--text-primary);
+    border-color: rgba(255,255,255,0.3);
+    box-shadow: none;
+  }
+
+  .card button.danger {
+    background-color: var(--danger);
+    box-shadow: 0 0 0 0 rgba(193,18,31,0.3);
+  }
+
+  .card button.danger:hover {
+    background-color: #e01626;
+    box-shadow: 0 0 0 6px rgba(193,18,31,0.2);
+  }
+
+  .card-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+p{
+    color:var(--danger)
+}
+  p.alert {
+    color: var(--danger);
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: rgba(193,18,31,0.08);
+    border: 1px solid rgba(193,18,31,0.2);
+    border-radius: 8px;
+    border-left: 3px solid var(--danger);
+  }
+
+  p.alert::before {
+    content: '⚠';
+    font-size: 14px;
+  }

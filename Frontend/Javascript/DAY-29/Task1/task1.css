@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --bg: #0d0d0d;
+  --card-bg: #141414;
+  --accent: #c8ff00;
+  --text: #f0f0f0;
+  --muted: #666;
+  --border: #2a2a2a;
+  --pros: #c8ff00;
+  --cons: #ff4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+      height: 100%;
+      width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  padding: 2rem;
+
+}
+
+main {
+ height: 100%;
+  width: 100%;
+ 
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ── Card ── */
+.car-card {
+    height: 100%;
+  width: 100%;
+  display: flex;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  min-height: 300px;
+  opacity: 0;
+  transform: translateY(28px);
+  animation: slideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.car-card:nth-child(1) { animation-delay: 0.05s; }
+.car-card:nth-child(2) { animation-delay: 0.15s; }
+.car-card:nth-child(3) { animation-delay: 0.25s; }
+.car-card:nth-child(4) { animation-delay: 0.35s; }
+.car-card:nth-child(5) { animation-delay: 0.45s; }
+
+@keyframes slideUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Image ── */
+.car-card img {
+  flex: 0 0 32%;
+  width: 30%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(15%) contrast(1.1);
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+/* .car-card:hover img {
+  filter: grayscale(0%) contrast(1.15);
+  transform: scale(1.03);
+} */
+
+/* ── div2 — info panel ── */
+.div2 {
+  flex: 1;
+  padding: 1.75rem 1.5rem 1.5rem;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.div2 h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.div2 h2 span {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+/* parent company */
+.div2 h3 {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}
+
+/* mileage label */
+.div2 h4 {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.6rem;
+}
+
+/* extra h5 rows (mileage / fuel) */
+.div2 h5 {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--muted);
+  padding-left: 0.6rem;
+}
+
+/* ── Color swatches ── */
+.colors {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.colors div {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  font-size: 0; /* hide the raw text injected by JS */
+  color: transparent;
+}
+
+.colors div:hover {
+  transform: scale(1.25);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+/* Give each swatch a distinct color via nth-child */
+.colors div:nth-child(1) { background: #e8e8e0; }
+.colors div:nth-child(2) { background: #b0b0b0; }
+.colors div:nth-child(3) { background: #1a2a4a; }
+.colors div:nth-child(4) { background: #b22222; }
+.colors div:nth-child(5) { background: #5a5a5a; }
+
+.fuel-options{
+    display: flex;
+}
+.colors p {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-left: 0.2rem;
+}
+
+/* ── div3 — pros / cons ── */
+.div3 {
+  flex: 1;
+  padding: 1.75rem 1.5rem;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.div3 h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+}
+
+.pros { color: var(--pros); }
+
+.cons {
+  color: var(--cons);
+  margin-top: 0.75rem;
+}
+
+.div3 > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.div3 > div p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding: 0.45rem 0.75rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: 2px;
+  min-height: 1.8rem;
+  border-left: 2px solid var(--border);
+  transition: border-color 0.2s ease, color 0.2s ease;
+  line-height: 1.4;
+}
+
+.div3 > div p:hover {
+  color: var(--text);
+}
+
+.pros + div p { border-left-color: rgba(200, 255, 0, 0.35); }
+.cons + div p { border-left-color: rgba(255, 68, 68, 0.35); }
+
+.pros + div p:hover { border-left-color: var(--pros); }
+.cons + div p:hover { border-left-color: var(--cons); }

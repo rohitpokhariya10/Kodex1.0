@@ -1,0 +1,17 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html,
+body {
+height: 100%;
+width: 100%;
+}
+#main{
+    background-image: url("https://wallpapers.com/images/hd/avengers-doomsday-logo-reveal-ho4k22ggffspbjrt.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}

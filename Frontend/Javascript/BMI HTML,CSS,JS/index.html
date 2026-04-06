@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- loader -->
+        <div class="header">
+            <div class="eyebrow">Health Metrics</div>
+            <h1>BMI CALC</h1>
+            <p>Know your body understand your health</p>
+        </div>
+
+        <div class="inner">
+
+            <div class="card">
+
+                <!-- Unit Toggle -->
+                <div class="unit-toggle">
+                    <button class="unitActive" id="btnMetric">Metric (kg / cm)</button>
+                    <button id="btnImperial">Imperial (lb / ft)</button>
+                </div>
+
+                <!-- Height -->
+                <div class="input-group" id="heightGroup">
+                    <label>Height <span id="heightVal">cm</span></label>
+
+                    <div class="input-row" id="heightMetric">
+                        <div class="input-wrap">
+                            <input type="number" id="heightCm" placeholder="170" min="50" max="250" value="170" />
+                            <!-- <span class="unit-badge"></span> -->
+                        </div>
+                    </div>
+
+                    <!-- height Imperial -->
+
+                    <div class="input-row" id="heightImperial">
+                        <div class="input-wrap">
+                            <input type="number" id="heightFt" placeholder="5" min="1" max="8" value="5" />
+                            <span class="unit-badge">ft</span>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="number" id="heightIn" placeholder="7" min="0" max="11" value="7" />
+                            <span class="unit-badge">in</span>
+                        </div>
+                    </div>
+
+                    <div class="slider-wrap" id="heightSliderWrap">
+                        <input type="range" id="sliderH" min="50" max="250" value="170" />
+                    </div>
+                </div>
+
+                <!-- Weight -->
+                <div class="input-group">
+                    <label>Weight <span id="weightVal">kg</span></label>
+                    <div class="input-row" id="weightMetric">
+                        <div class="input-wrap">
+                            <input type="number" id="weightKg" placeholder="70" min="10" max="300" value="70" />
+                            <!-- <span class="unit-badge">kg</span> -->
+                        </div>
+                    </div>
+
+                    <!-- weight imperial -->
+                    <div class="input-row" id="weightImperial">
+                        <div class="input-wrap">
+                            <input type="number" id="weightLb" placeholder="154" min="22" max="660" value="154" />
+                            <span class="unit-badge">lb</span>
+                        </div>
+                    </div>
+
+                    <div class="slider-wrap" id="weightSliderWrap">
+                        <input type="range" id="sliderW" min="10" max="300" value="70" />
+                    </div>
+                </div>
+
+                <div class="btns">
+                    <button class="btn-reset">Reset</button>
+                    <button class="btn-calc">CALCULATE BMI</button>
+                </div>
+
+
+
+                <!-- Result -->
+                <div class="result">
+
+                    <div class="result-header">
+                        <div class="result-icon">🌿</div>
+                        <h2 class="result-title">Analysis Result</h2>
+                        <span class="result-badge">✓ Complete</span>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="wrapper2">
+                        <div class="stat-card">
+                            <span class="bmi-range">24</span>
+
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-card">
+                            <span class="bmi-category">Normal Weight</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="suggestion">
+                        <div class="suggestion-label">Suggestions</div>
+                        <div class="suggestion-list">
+                            <div class="suggestion-item">
+                                <div class="suggestion-dot"></div>
+                                <p class="suggestion-text">Great! Maintain your healthy lifestyle with balanced diet and regular exercise.</p>
+                            </div>
+                           
+                            
+                        </div>
+                    </div>
+
+                    <div class="result-footer">
+                        <span class="footer-note">Generated · just now by  Rohit Pokhariya</span>
+                        <!-- <button class="action-btn">Export Report →</button> -->
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>

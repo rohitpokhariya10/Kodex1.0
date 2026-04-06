@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+p{
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+button{
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover{
+    background-color: #222;
+    color: white;
+    transform: scale(1.05);
+}
+
+button:active{
+    transform: scale(0.95);
+}

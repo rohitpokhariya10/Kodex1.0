@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lexend:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --card: #111111;
+  --border: #222222;
+  --text: #f2f2f2;
+  --muted: #444;
+  --plus: #00e5a0;
+  --minus: #ff3d6b;
+  --plus-dim: rgba(0, 229, 160, 0.08);
+  --minus-dim: rgba(255, 61, 107, 0.08);
+}
+
+body {
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+}
+
+/* Subtle radial glow in center */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,255,255,0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 56px 72px 48px;
+  min-width: 280px;
+}
+
+/* Corner accents */
+main::before,
+main::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--muted);
+  border-style: solid;
+}
+
+main::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+main::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* ── Counter number ── */
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 18vw, 9rem);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease, transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  margin-bottom: 40px;
+  position: relative;
+}
+
+/* Tick animation class — add/remove via JS */
+h1.tick {
+  transform: scale(1.08);
+}
+
+h1.positive { color: var(--plus); }
+h1.negative { color: var(--minus); }
+
+/* ── Divider ── */
+main > h1::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--border);
+  margin: 20px auto 0;
+}
+
+/* ── Button row ── */
+.increment,
+.decrement {
+  width: 100%;
+  font-family: 'Lexend', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border: 1px solid;
+  padding: 14px 0;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  outline: none;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ripple layer */
+.increment::after,
+.decrement::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.increment::after { background: var(--plus-dim); }
+.decrement::after { background: var(--minus-dim); }
+
+.increment:hover::after,
+.decrement:hover::after {
+  opacity: 1;
+}
+
+/* Increment — green outlined */
+.increment {
+  background: transparent;
+  color: var(--plus);
+  border-color: rgba(0, 229, 160, 0.35);
+}
+
+.increment:hover {
+  border-color: var(--plus);
+  box-shadow: 0 0 18px rgba(0, 229, 160, 0.15);
+}
+
+/* Decrement — red outlined */
+.decrement {
+  background: transparent;
+  color: var(--minus);
+  border-color: rgba(255, 61, 107, 0.35);
+}
+
+.decrement:hover {
+  border-color: var(--minus);
+  box-shadow: 0 0 18px rgba(255, 61, 107, 0.15);
+}
+
+/* Press */
+.increment:active,
+.decrement:active {
+  transform: scale(0.97);
+  transition: transform 0.06s ease;
+}
+
+/* ── "COUNTER" label above number ── */
+main::before {
+  content: '';
+  /* reset for corner accent — handled separately below */
+}
+
+/* use a data-label trick-free approach — label via h1 sibling pseudo */
+.increment::before {
+  content: 'COUNTER';
+  display: block;
+  position: absolute;
+  top: -74px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  pointer-events: none;
+}

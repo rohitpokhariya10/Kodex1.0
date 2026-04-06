@@ -1,0 +1,1 @@
+promise handler hum use islie hi krte hai takki promise ke  reject/resolve hone par jo  data  milta hai use get get kr ske
