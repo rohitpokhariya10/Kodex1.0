@@ -4,9 +4,12 @@ import Navbar from "../Components/Navbar"
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className='min-h-screen bg-transparent'>
       <Navbar/>
-      <Outlet/>
+      <div className='relative'>
+        <div className='pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/60 to-transparent' />
+        <Outlet/>
+      </div>
     </div>
   )
 }

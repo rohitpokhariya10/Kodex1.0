@@ -1,11 +1,13 @@
-import React from 'react'
+import { useState } from "react";
+import { createContext } from "react";
 
-const BlogContext = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+export let Blog = createContext()
+
+export let BlogProvider = ({children}) =>{
+    const [ blogs, setBlogs] = useState(JSON.parse(localStorage.getItem("blogs")) || [])
+    const [isPublish, setIsPublish] = useState(null)
+
+    return <Blog.Provider value={{blogs , setBlogs , isPublish , setIsPublish}}>
+        {children}
+    </Blog.Provider>
 }
-
-export default BlogContext

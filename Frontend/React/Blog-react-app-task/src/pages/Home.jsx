@@ -1,123 +1,53 @@
-import React from "react";
+import React, { useContext } from "react";
+import BlogCard from "../Components/BlogCard";
+import { Blog } from "../Context/BlogContext";
 
 const Home = () => {
+  const { blogs } = useContext(Blog);
+
   return (
-    <main className="mx-auto max-w-5xl px-4 py-12">
-      
-      {/* Hero Section */}
-      <section className="mb-12 text-center">
-        <h1 className="text-balance text-4xl font-bold tracking-tight sm:text-5xl">
-          Welcome to <span className="text-primary">Inkwell</span>
+    <main className="mx-auto w-full max-w-[1280px] px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+      <section className="mx-auto max-w-4xl text-center">
+        <h1 className="text-balance text-[3rem] font-semibold leading-[1.05] tracking-[-0.05em] text-[#111111] sm:text-[4.5rem]">
+          Welcome to <span className="text-[#1A67AD]">Inkwell</span>
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
-          Discover thoughtful articles on technology, programming, and software engineering from passionate writers.
+        <p className="mx-auto mt-7 max-w-3xl text-[1.12rem] leading-10 text-[#4B5563] sm:text-[1.25rem]">
+          Discover thoughtful articles on technology, programming, and software
+          engineering from passionate writers.
         </p>
       </section>
 
-      {/* Blog Section */}
-      <section>
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-2xl font-semibold tracking-tight">Latest Articles</h2>
-          <span className="text-sm text-muted-foreground">3 articles</span>
+      <section className="mt-24">
+        <div className="mb-12 flex items-end justify-between gap-4">
+          <h2 className="text-[2.15rem] font-semibold tracking-[-0.04em] text-[#111111]">
+            Latest Articles
+          </h2>
+          <span className="pb-1 text-[1rem] font-medium text-[#4B5563]">
+            {blogs.length} {blogs.length === 1 ? "article" : "articles"}
+          </span>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-
-          {/* Card 1 */}
-          <a href="/blog/1">
-            <div className="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm group h-full transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
-              
-              <div className="px-6 pb-3">
-                <div className="flex flex-wrap gap-2">
-                  <span className="badge">React</span>
-                  <span className="badge">JavaScript</span>
-                  <span className="badge">Web Development</span>
-                </div>
-
-                <h2 className="text-xl font-semibold mt-2 group-hover:text-primary">
-                  Getting Started with React Hooks
-                </h2>
-              </div>
-
-              <div className="px-6 pb-4">
-                <p className="text-muted-foreground line-clamp-3">
-                  Learn how React Hooks can simplify your component logic and make your code more reusable.
-                </p>
-              </div>
-
-              <div className="px-6 flex justify-between text-sm text-muted-foreground">
-                <span>👤 Sarah Chen</span>
-                <span>📅 January 15, 2024</span>
-              </div>
-
-            </div>
-          </a>
-
-          {/* Card 2 */}
-          <a href="/blog/2">
-            <div className="bg-card flex flex-col gap-6 rounded-xl border py-6 shadow-sm group h-full hover:shadow-lg">
-              
-              <div className="px-6 pb-3">
-                <div className="flex gap-2 flex-wrap">
-                  <span className="badge">Node.js</span>
-                  <span className="badge">API</span>
-                  <span className="badge">Backend</span>
-                </div>
-
-                <h2 className="text-xl font-semibold mt-2 group-hover:text-primary">
-                  Building Scalable APIs with Node.js
-                </h2>
-              </div>
-
-              <div className="px-6 pb-4">
-                <p className="text-muted-foreground">
-                  Explore best practices for creating robust and scalable REST APIs using Node.js and Express.
-                </p>
-              </div>
-
-              <div className="px-6 flex justify-between text-sm text-muted-foreground">
-                <span>👤 Sarah Chen</span>
-                <span>📅 January 20, 2024</span>
-              </div>
-
-            </div>
-          </a>
-
-          {/* Card 3 */}
-          <a href="/blog/3">
-            <div className="bg-card flex flex-col gap-6 rounded-xl border py-6 shadow-sm group h-full hover:shadow-lg">
-              
-              <div className="px-6 pb-3">
-                <div className="flex gap-2 flex-wrap">
-                  <span className="badge">Programming</span>
-                  <span className="badge">Best Practices</span>
-                  <span className="badge">Software Engineering</span>
-                </div>
-
-                <h2 className="text-xl font-semibold mt-2 group-hover:text-primary">
-                  The Art of Clean Code
-                </h2>
-              </div>
-
-              <div className="px-6 pb-4">
-                <p className="text-muted-foreground">
-                  Discover the principles and practices that separate good code from great code.
-                </p>
-              </div>
-
-              <div className="px-6 flex justify-between text-sm text-muted-foreground">
-                <span>👤 Marcus Johnson</span>
-                <span>📅 February 1, 2024</span>
-              </div>
-
-            </div>
-          </a>
-
-        </div>
+        {blogs.length === 0 ? (
+          <div className="rounded-[24px] border border-dashed border-[#CBD5E1] bg-white px-6 py-16 text-center shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
+            <p className="text-2xl font-semibold text-[#111827]">No articles yet</p>
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#64748B]">
+              Your homepage is ready for a polished editorial feed. Publish the
+              first story from the dashboard and it will appear here.
+            </p>
+          </div>
+        ) : (
+          <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+            {blogs.map((blog) => (
+              <BlogCard key={blog.id} blog={blog} />
+            ))}
+          </div>
+        )}
       </section>
-
     </main>
-  );
+  ) 
+  
 };
 
 export default Home;
+
+
