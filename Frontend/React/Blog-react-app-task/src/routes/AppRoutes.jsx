@@ -7,6 +7,7 @@ import Register from '../pages/Register'
 import AuthLayout from '../layouts/AuthLayout'
 import DashboardLayout from '../layouts/DashboardLayout'
 import BlogForm from '../Components/BlogForm'
+import BlogDetails from '@/pages/BlogDetails'
 
 const AppRoutes = () => {
   let router = createBrowserRouter([
@@ -18,7 +19,12 @@ const AppRoutes = () => {
         {
          index:true,
          element: <Home/>
+        },
+        {
+          path:"details/:id",
+          element:<BlogDetails/>
         }
+        
       ]
 
     },
@@ -45,7 +51,8 @@ const AppRoutes = () => {
     {
       path: "/authordashboard/new",
       element: <BlogForm/>,
-    }
+    },
+   
   ])
   return <RouterProvider router={router}/>
 }

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Auth } from "../Context/AuthContext";
 import { Link } from "react-router";
@@ -7,27 +7,39 @@ const inputBaseClass =
   "h-12 w-full rounded-2xl border border-[#D4D8DE] bg-white px-4 text-[15px] text-[#111827] shadow-[0_1px_2px_rgba(16,24,40,0.05)] outline-none transition placeholder:text-[#6B7280] focus:border-[#1A67AD] focus:ring-4 focus:ring-[#1A67AD]/10";
 
 const Register = () => {
+  console.log("Register Rendering..");
   let {
     register,
     reset,
     handleSubmit,
     formState: { errors },
+    setValue,
+    
   } = useForm({
     mode: "onChange",
+    defaultValues: {
+      accountType: "author",
+    },
   });
- //AuthContext
+  //AuthContext
   let { accountType, setAccountType, registeredUser, setRegisteredUser } =
     useContext(Auth);
-  console.log("account type -->", accountType);
 
+  
+
+  useEffect(() => {
+    setValue("accountType", accountType);
+  }, [accountType, setValue]);
+
+  //Form Submit
   let handleRegisterFormSubmit = (data) => {
-    console.log(data);
-
+    console.log("Registered user", data);
     let newUser = [...registeredUser, data];
     setRegisteredUser(newUser);
-    
+
     //store register user info in Local storage
     localStorage.setItem("reg-users", JSON.stringify(newUser));
+
     reset();
     alert("user registered");
   };
@@ -96,7 +108,6 @@ const Register = () => {
           <input
             id="email"
             type="email"
-            defaultValue="rohit.pokhariya123@gmail.com"
             placeholder="you@example.com"
             className={inputBaseClass}
             {...register("email", {
@@ -104,6 +115,14 @@ const Register = () => {
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 message: "Enter a valid email address",
+              },
+              //validate: (value) => {}------>Ye custom validation function hai (React Hook Form ka)
+              //value = jo user ne email input me likha hai
+              validate: (value) => {
+                const isExist = registeredUser.find(
+                  (user) => user.email === value,
+                );
+                return !isExist || "Email already exists";
               },
             })}
           />
@@ -123,7 +142,6 @@ const Register = () => {
           <input
             id="password"
             type="password"
-            defaultValue="12345678"
             placeholder="Create a password"
             className={inputBaseClass}
             {...register("password", {
@@ -150,18 +168,17 @@ const Register = () => {
             id="confirmPassword"
             type="password"
             placeholder="Confirm your password"
-            required
             className={inputBaseClass}
-            {...register("password", {
-              minLength: {
-                value: 6,
-                message: "Minimum length should be 6",
-              },
-              required: "Pasword is required",
+            {...register("confirmPassword", {
+              required: "Confirm password is required",
+              validate: (value) =>
+                value === password || "Passwords do not match",
             })}
           />
-          {errors.password && (
-            <p className="text-red-500 text-sm">{errors.password.message}</p>
+          {errors.confirmPassword && (
+            <p className="text-red-500 text-sm">
+              {errors.confirmPassword.message}
+            </p>
           )}
         </div>
         {/* Account Type */}
@@ -174,7 +191,9 @@ const Register = () => {
             {/* Reader */}
             <button
               type="button"
-              onClick={() => setAccountType("reader")}
+              onClick={() => {
+                setAccountType("reader");
+              }}
               className={`rounded-2xl border px-4 py-4 text-center shadow-sm transition
         ${
           accountType === "reader"
@@ -189,7 +208,9 @@ const Register = () => {
             {/* Author */}
             <button
               type="button"
-              onClick={() => setAccountType("author")}
+              onClick={() => {
+                setAccountType("author");
+              }}
               className={`rounded-2xl border px-4 py-4 text-center shadow-sm transition
         ${
           accountType === "author"
@@ -201,11 +222,8 @@ const Register = () => {
               <p className="text-sm text-[#4B5563]">Write & publish</p>
             </button>
           </div>
-          <input
-            type="hidden"
-            value={accountType}
-            {...register("accountType")}
-          />
+          {/* //Rhf me input ka hi data form submit me bhjte h */}
+          <input type="hidden" {...register("accountType")} />
         </div>
 
         {/* Button */}
@@ -219,7 +237,10 @@ const Register = () => {
 
           <p className="text-center text-[15px] text-[#6B7280]">
             Already have an account?{" "}
-            <Link to="/auth/login" className="font-medium text-[#1A67AD] hover:underline">
+            <Link
+              to="/auth/login"
+              className="font-medium text-[#1A67AD] hover:underline"
+            >
               Sign in
             </Link>
           </p>

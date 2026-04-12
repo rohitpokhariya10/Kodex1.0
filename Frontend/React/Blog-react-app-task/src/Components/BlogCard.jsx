@@ -1,3 +1,5 @@
+import { useNavigate, useParams } from "react-router";
+
 const BlogCard = ({ blog }) => {
   const previewText = blog?.excerpt || blog?.content || "No preview available yet.";
   const formattedDate = blog?.createdAt
@@ -14,9 +16,14 @@ const BlogCard = ({ blog }) => {
         .map((tag) => tag.trim())
         .filter(Boolean)
     : ["General"];
+   
 
+    let navigate = useNavigate()
+    
   return (
-    <article className="flex min-h-[410px] flex-col rounded-[22px] border border-[#D9DDE4] bg-white p-8 shadow-[0_6px_18px_rgba(15,23,42,0.06)]">
+    <article 
+    onClick={()=> navigate(`/details/${blog.id}`)}
+    className="flex min-h-[410px] flex-col rounded-[22px] border border-[#D9DDE4] bg-white p-8 shadow-[0_6px_18px_rgba(15,23,42,0.06)]">
       <div className="flex flex-wrap gap-2">
         {tagItems.map((tag) => (
           <span

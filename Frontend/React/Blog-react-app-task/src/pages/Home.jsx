@@ -3,7 +3,7 @@ import BlogCard from "../Components/BlogCard";
 import { Blog } from "../Context/BlogContext";
 
 const Home = () => {
-  const { blogs } = useContext(Blog);
+  const { published } = useContext(Blog);
 
   return (
     <main className="mx-auto w-full max-w-[1280px] px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
@@ -23,11 +23,11 @@ const Home = () => {
             Latest Articles
           </h2>
           <span className="pb-1 text-[1rem] font-medium text-[#4B5563]">
-            {blogs.length} {blogs.length === 1 ? "article" : "articles"}
+            {published.length}
           </span>
         </div>
 
-        {blogs.length === 0 ? (
+        {published.length === 0 ? (
           <div className="rounded-[24px] border border-dashed border-[#CBD5E1] bg-white px-6 py-16 text-center shadow-[0_8px_24px_rgba(15,23,42,0.06)]">
             <p className="text-2xl font-semibold text-[#111827]">No articles yet</p>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#64748B]">
@@ -37,9 +37,12 @@ const Home = () => {
           </div>
         ) : (
           <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-            {blogs.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
-            ))}
+           {
+            published.map((blog, index)=>{
+
+              return <BlogCard blog={blog} key={index} />
+            })
+           }
           </div>
         )}
       </section>
@@ -49,5 +52,4 @@ const Home = () => {
 };
 
 export default Home;
-
 

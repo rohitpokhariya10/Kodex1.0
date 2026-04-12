@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useContext,  } from "react";
 import { Blog } from "../Context/BlogContext";
 import { useNavigate } from "react-router";
+import { Auth } from "../Context/AuthContext";
 
 const BlogForm = () => {
-  const { blogs, setBlogs, isPublish, setIsPublish } = useContext(Blog);
+  const { blogs, setBlogs , setEditBlog , editBlog} = useContext(Blog);
+  const { loggedInUser } = useContext(Auth);
   const navigate = useNavigate();
   const inputClass =
     "w-full rounded-2xl border border-[#D6DCE5] bg-white px-4 py-3 text-[15px] text-[#0F172A] shadow-[0_1px_2px_rgba(15,23,42,0.06)] outline-none transition placeholder:text-[#94A3B8] focus:border-[#1A67AD] focus:ring-4 focus:ring-[#1A67AD]/10";
@@ -14,31 +16,53 @@ const BlogForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+    defaultValues: editBlog 
+  });
 
-  const handleFormSubmit = (data) => {
-    const newBlog = {
+
+
+  const handleFormSubmit = (data, status) => {
+    if(editBlog){
+      setBlogs((prev)=> {
+        let updateBlog = prev.map((val)=>{
+          return val.id === editBlog.id ? {...val , ...data} : val
+        })
+        localStorage.setItem("blogs", JSON.stringify(updateBlog));
+        return updateBlog
+      })
+      setEditBlog(null)
+    }
+    else{
+      const newBlog = {
       id: Date.now(),
       title: data.title,
       excerpt: data.excerpt,
       content: data.content,
       tags: data.tags,
-      createdAt: new Date(),
-      status: isPublish,
+      authorName: loggedInUser?.name || "Unknown Author",
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      status,
     };
-
     const updatedBlogs = [...blogs, newBlog];
     setBlogs(updatedBlogs);
     localStorage.setItem("blogs", JSON.stringify(updatedBlogs));
+    }
     reset();
-    navigate("/authordashboard");
+    navigate("/authordashboard");//BlogForm submit krte hi dashboard pe redirect
   };
- 
-  let navig = useNavigate()
+
+  const handleSubmitWithStatus = (status) =>
+    handleSubmit((data) => handleFormSubmit(data, status))();
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6 lg:px-8 flex flex-col items-start gap-6">
-      <button className="flex items-center gap-2 px-3 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition"
-      onClick={()=> navig('/authordashboard')}
+      <button
+      type="button"
+      className="flex items-center gap-2 rounded-md bg-gray-100 px-3 py-2 text-gray-700 transition hover:bg-gray-200"
+      onClick={() => navigate("/authordashboard")}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -58,10 +82,7 @@ const BlogForm = () => {
         </svg>
         Back to Dashboard
       </button>
-      <form
-        onSubmit={handleSubmit(handleFormSubmit)}
-        className="overflow-hidden rounded-[32px] border border-white/80 bg-white/90 shadow-[0_24px_70px_rgba(15,23,42,0.12)]"
-      >
+      <form className="overflow-hidden rounded-[32px] border border-white/80 bg-white/90 shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
         <div className="border-b border-[#E2E8F0] px-8 py-6">
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#1A67AD]">
             New Article
@@ -165,15 +186,15 @@ const BlogForm = () => {
 
         <div className="flex flex-col gap-3 border-t border-[#E2E8F0] px-8 py-6 sm:flex-row sm:justify-end">
           <button
-            onClick={() => setIsPublish("draft")}
-            type="submit"
+            type="button"
+            onClick={() => handleSubmitWithStatus("draft")}
             className="h-12 rounded-2xl border border-[#CBD5E1] bg-white px-5 text-sm font-semibold text-[#334155] transition hover:bg-[#F8FAFC]"
           >
             Save as Draft
           </button>
           <button
-            onClick={() => setIsPublish("publish")}
-            type="submit"
+            type="button"
+            onClick={() => handleSubmitWithStatus("publish")}
             className="h-12 rounded-2xl bg-[#1A67AD] px-5 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(26,103,173,0.22)] transition hover:bg-[#145994]"
           >
             Publish

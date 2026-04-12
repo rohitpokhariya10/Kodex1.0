@@ -4,6 +4,7 @@ import { Auth } from "../Context/AuthContext"; // adjust path if needed
 import { Link, useNavigate } from "react-router";
 
 const Login = () => {
+  console.log("Login Rendering..")
   let { setLoggedInUser, registeredUser , loggedInUser } = useContext(Auth);
   const inputClass =
     "h-12 w-full rounded-2xl border border-[#D6DCE5] bg-white/90 px-4 text-[15px] text-[#0F172A] shadow-[0_1px_2px_rgba(15,23,42,0.06)] outline-none transition placeholder:text-[#94A3B8] focus:border-[#1A67AD] focus:ring-4 focus:ring-[#1A67AD]/10";
@@ -25,6 +26,7 @@ const Login = () => {
         user.email === data.email &&
         user.password === data.password
     );
+    console.log(isValidUser)
 
     if (isValidUser) {
       setLoggedInUser(isValidUser);
@@ -34,7 +36,7 @@ const Login = () => {
       console.log("✅ Login success");
       reset();
       navigate('/')//loggedinUser ko home me lejayega
-      localStorage.setItem("logined-user" , JSON.stringify(data))
+      localStorage.setItem("logined-user" , JSON.stringify(isValidUser))
     } else {
       console.log("❌ Invalid credentials");
     }
