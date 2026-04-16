@@ -6,5 +6,7 @@ import axios from 'axios'
 
 //We can now write: axiosInstance.get("/products");
 export let axiosInstance = axios.create({
+    //api call ka baseURL hai ye
     baseURL:"https://fakestoreapi.com",
 })
+//console.log(axiosInstance)

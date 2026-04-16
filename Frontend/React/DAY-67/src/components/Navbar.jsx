@@ -36,6 +36,15 @@ const Navbar = () => {
         >
           Shop
         </NavLink>
+
+         <NavLink
+          to="/cart"
+          className={({ isActive }) =>
+            `${baseStyle} ${isActive ? activeStyle : ""}`
+          }
+        >
+          Cart
+        </NavLink>
       </div>
     </nav>
   );

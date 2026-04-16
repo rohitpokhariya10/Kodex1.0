@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import About from "../pages/About";
 import Shop from "../pages/Shop";
 import MainLayout from "../layouts/MainLayout";
+import CartPage from "../pages/CartPage";
 
 const AppRoutes = () => {
   let router = createBrowserRouter([
@@ -15,13 +16,17 @@ const AppRoutes = () => {
             element: <HomePage/>
         },
         {
-          path: "/about",
+          path: "about",
           element: <About />,
         },
         {
-          path: "/shop",
+          path: "shop",
           element: <Shop />,
         },
+        {
+          path:"cart",
+          element:<CartPage/>
+        }
       ],
     },
   ]);
