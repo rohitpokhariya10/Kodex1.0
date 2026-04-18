@@ -20,7 +20,7 @@ const LoginPage = ({ setToggle }) => {
     console.log("Logged In User Data", res.data);
     localStorage.setItem("accessToken" , res.data.accessToken)//store user login accessToken in localStorage
      alert(`${res.data.firstName} successfully loggedin`)
-    dispatch(addUser(res.data));
+    dispatch(addUser(res.data));  
   };
 
   return (

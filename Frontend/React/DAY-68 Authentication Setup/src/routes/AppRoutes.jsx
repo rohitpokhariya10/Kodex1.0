@@ -17,7 +17,8 @@ const AppRoutes = () => {
   useEffect(() => {
     (async () => {
       try {
-        //Get current auth user
+        //Get current auth user---> kaunsa user login hai uska data degi /me api
+        //ye IIFE har reload pe chalega user login hoga tuh dashboard dikhega else login page
         let response = await axios.get("https://dummyjson.com/auth/me", {
           headers: {
             Authorization: `Bearer ${token}`,
