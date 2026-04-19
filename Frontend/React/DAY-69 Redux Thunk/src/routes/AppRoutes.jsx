@@ -9,20 +9,20 @@ import PublicRoute from "./PublicRoute";
 import ProtectedcRoute from "./PtotectedRoute";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser, removeUser } from "../features/authSlice";
+import { removeUser } from "../features/authSlice";
+import { loginUser } from "../features/actions/authAction";
 
 const AppRoutes = () => {
   let token = localStorage.getItem("accessToken"); //localStorage se  accessToken get kar rhe hain
 
-let dispatch = useDispatch()
-
-  if(!token){
-    dispatch(removeUser())
-  }
-  
-  
+  let dispatch = useDispatch();
 
   useEffect(() => {
+    if (!token) {
+      dispatch(removeUser());
+      return;
+    }
+
     (async () => {
       try {
         //Get current auth user---> kaunsa user login hai uska data degi /me api
@@ -32,9 +32,9 @@ let dispatch = useDispatch()
             Authorization: `Bearer ${token}`,
           },
         });
-      
-        console.log(response.data)
-        dispatch(addUser(response.data))
+
+        console.log(response.data);
+        dispatch(loginUser(response.data));
       } catch (error) {
         console.error("Error in me API", error);
       }

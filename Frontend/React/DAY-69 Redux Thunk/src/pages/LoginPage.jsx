@@ -2,7 +2,8 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { addUser } from "../features/authSlice";
+
+import { loginUser } from "../features/actions/authAction";
 
 const LoginPage = ({ setToggle }) => {
   const {
@@ -16,11 +17,7 @@ const LoginPage = ({ setToggle }) => {
   //form submit handler function
   const onSubmit = async (data) => {
     //console.log('Login Data:', data)
-    const res = await axios.post("https://dummyjson.com/auth/login", data);
-    console.log("Logged In User Data", res.data);
-    localStorage.setItem("accessToken" , res.data.accessToken)//store user login accessToken in localStorage
-     alert(`${res.data.firstName} successfully loggedin`)
-    dispatch(addUser(res.data));  
+   dispatch(loginUser(data))
   };
 
   return (
