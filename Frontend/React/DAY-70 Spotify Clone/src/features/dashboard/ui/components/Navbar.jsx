@@ -1,5 +1,6 @@
 import React from "react";
 import { Home, Search, Download } from "lucide-react";
+import SearchInput from "../../../search/ui/components/SearchInput";
 
 const Navbar = () => {
   return (
@@ -21,13 +22,9 @@ const Navbar = () => {
         </div>
 
         {/* Search Bar */}
-        <div className="flex items-center bg-neutral-800 px-4 py-2 rounded-full w-[350px]">
-          <Search size={18} className="text-gray-400 mr-2" />
-          <input
-            type="text"
-            placeholder="What do you want to play?"
-            className="bg-transparent outline-none text-sm w-full placeholder-gray-400"
-          />
+        <div className="flex items-center bg-neutral-800 px-4 py-2 rounded-full w-[350px] ">
+         <SearchInput  placeholder="Enter a song"  type="text"/>
+         
         </div>
       </div>
 

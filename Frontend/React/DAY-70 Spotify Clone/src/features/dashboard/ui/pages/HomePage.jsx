@@ -1,25 +1,23 @@
-import React, { useState } from "react";
-import { allSongs } from "../../api/songsApi";
+
 import SongCard from "../components/SongCard";
+import { useDashboard } from "../../hooks/useDashboard";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const allSongsData = allSongs();
-  console.log("All Songs Data-->" , allSongsData)
-  const [visibleCount, setVisibleCount] = useState(20);
+  
 
-  const loadMore = () => {
-    setVisibleCount(prev => prev + 20);
-  };
+  let {dispatch , loadMore ,  visibleCount} = useDashboard()
+  let {songs} = useSelector((store)=>store.player)
 
   return (
     <div>
       <div className="grid grid-cols-4 gap-4">
-        {allSongsData.slice(0, visibleCount).map((song , index) => (
-          <SongCard key={index} song={song} />
+        {songs.slice(0, visibleCount).map((song , index) => (
+          <SongCard key={index} song={song} dispatch={dispatch} />
         ))}
       </div>
 
-      {visibleCount < allSongsData.length && (
+      {visibleCount < songs.length && (
         <button
           onClick={loadMore}
           className="mt-6 px-6 py-2 bg-green-500 text-white rounded"
