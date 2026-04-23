@@ -3,6 +3,8 @@ import Navbar from "../../features/dashboard/ui/components/Navbar";
 import { Outlet } from "react-router";
 import { Panel, Group } from "react-resizable-panels";
 import Player from "../../features/player/ui/components/Player";
+import RightPanel from "../../features/dashboard/ui/pages/RightPanel";
+import LeftPanel from "../../features/dashboard/ui/pages/LeftPanel";
 
 const DashboardLayout = () => {
   return (
@@ -14,9 +16,9 @@ const DashboardLayout = () => {
           <Panel
             className="bg-[#121212] rounded-md p-3"
             minSize={"10%"}
-            maxSize={"18%"}
+            maxSize={"25%"}
           >
-            Left Side
+            <LeftPanel/>
           </Panel>
 
           <Panel className="rounded-md bg-[#121212] p-3">
@@ -24,7 +26,7 @@ const DashboardLayout = () => {
           </Panel>
 
           <Panel minSize={"10%"} maxSize={"18%"} className="bg-[#121212] p-3 rounded-md">
-            Right Side
+           <RightPanel/>
           </Panel>
         </Group>
       </div>

@@ -5,6 +5,7 @@ import LoginPage from '../../features/auth/ui/pages/LoginPage'
 import RegisterPage from '../../features/auth/ui/pages/RegisterPage'
 import DashboardLayout from '../layouts/DashboardLayout'
 import HomePage from '../../features/dashboard/ui/pages/HomePage'
+import PlaylistPage from '../../features/dashboard/ui/pages/PlaylistPage'
 
 const AppRoutes = () => {
 
@@ -34,6 +35,10 @@ const AppRoutes = () => {
                 }
             ]
 
+        },
+        {
+            path:"/dashboard/:id",
+            element:<PlaylistPage/>
         }
     ])
   return <RouterProvider router={router}/>

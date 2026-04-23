@@ -5,8 +5,12 @@ let playerSlice = createSlice({
   initialState: {
     isPlaying: false,
     currentPlayingSong: null,
+    // this state is for forward backward feature
     songs: [],
     currentIndex: 0,
+     // this state is for PlayList Feature
+     playlistContainer:[],
+     playlistCounter:1
   },
   reducers: {
     setSongs: (state, action) => {
@@ -33,28 +37,38 @@ let playerSlice = createSlice({
 
     playNext: (state) => {
       if (state.currentIndex === null) return;
-      console.log("current Index i before playNext-->", state.currentIndex);
+     // console.log("current Index i before playNext-->", state.currentIndex);
 
       let nextIndex = state.currentIndex + 1;
       if (nextIndex >= state.songs.length) nextIndex = 0; // loop
       state.currentIndex = nextIndex;
-      console.log("current Index i after playNext-->", state.currentIndex);
+      //console.log("current Index i after playNext-->", state.currentIndex);
       state.currentPlayingSong = state.songs[nextIndex];
       state.isPlaying = true;
     },
 
     playPrev: (state) => {
       if (state.currentIndex === null) return;
-      console.log("current Index i before playPrev-->", state.currentIndex);
+      //console.log("current Index i before playPrev-->", state.currentIndex);
 
       let prevIndex = state.currentIndex - 1;
 
       if (prevIndex < 0) prevIndex = state.songs.length - 1; // loop
       state.currentIndex = prevIndex;
-      console.log("current Index i before playPrev-->", state.currentIndex);
+      //console.log("current Index i before playPrev-->", state.currentIndex);
       state.currentPlayingSong = state.songs[prevIndex];
       state.isPlaying = true;
     },
+    addToPlayList:(state , action)=>{
+      console.log("Playlist name-->" , action)
+      const newPlaylist = {
+        id:state.playlistCounter,
+        name:`My Playlist #${state.playlistCounter}`
+      }
+      state.playlistContainer.push(newPlaylist)
+      state.playlistCounter += 1
+
+    }
   },
 });
 
@@ -66,5 +80,6 @@ export let {
   currentIndex,
   playNext,
   playPrev,
+  addToPlayList
 } = playerSlice.actions;
 export default playerSlice.reducer;

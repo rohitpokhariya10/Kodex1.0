@@ -1,8 +1,10 @@
 import React from "react";
 import { Home, Search, Download } from "lucide-react";
 import SearchInput from "../../../search/ui/components/SearchInput";
+import { useNavigate } from "react-router";
 
 const Navbar = () => {
+  let navigate = useNavigate()
   return (
     <div className="w-full bg-black text-white px-6 py-3 flex items-center justify-between">
       
@@ -11,9 +13,10 @@ const Navbar = () => {
         
         {/* Logo */}
         <img
+          onClick={()=>navigate("/dashboard")}
           src="https://upload.wikimedia.org/wikipedia/commons/1/19/Spotify_logo_without_text.svg"
           alt="logo"
-          className="w-8"
+          className="w-8 cursor-pointer"
         />
 
         {/* Home Icon */}
