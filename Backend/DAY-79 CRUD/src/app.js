@@ -1,43 +1,64 @@
-// 1. Server Creation
-//2. Configuration
+// Import express library
+const express = require("express");
+
+// Create express app (this acts as our server)
+const app = express();
+
+// Middleware: JSON data ko JS object me convert karta hai
+app.use(express.json());
+
+// Temporary storage (RAM me store hota hai, restart pe data delete ho jayega)
+let users = [];
 
 
-// Server Creation
-const express = require("express")
-//app me express ka instance store karna (ab app server bangya hai)
-const app = express()
- 
-app.use(express.json())
+// CREATE User
+// POST → http://localhost:3000/getUsers
+app.post("/getUsers", (req, res) => {
+    users.push(req.body);
 
-//Storage to store data
-let users = []//YE ram ME CREATE HOTA H
+    return res.status(201).json({
+        message: "User created successfully",
+        usersKaData: users
+    });
+});
 
 
-// 1. Create Users
-//HTTP Method : POST
-//Route : http://localhost:3000/getUsers
-app.post("/getUsers" , (req,res)=>{
- // console.log("rq.body -->" , req.body)
- users.push(req.body)
-
- return res.status(201).json({
-    message:"Users created successfully",
-    usersKaData: users
- })
-})
-
-//2. Read Users
-//HTTP Method : GET
-//Route : https://localhost:3000/users
-app.get("/users" , (req,res)=>{
+// READ Users
+// GET → http://localhost:3000/users
+app.get("/users", (req, res) => {
     return res.status(200).json({
-        message:"Users fetched successfully",
-        usersKaData:users
-    })
-})
+        message: "Users fetched successfully",
+        usersKaData: users
+    });
+});
 
 
+// UPDATE User (Partial)
+// PATCH → http://localhost:3000/users/update/:index
+app.patch("/users/update/:index", (req, res) => {
+    let { index } = req.params;
+    let { age } = req.body;
+
+    users[index].age = age;
+
+    return res.status(200).json({
+        message: "User age updated successfully"
+    });
+});
 
 
-//export app (jo ab server hai)
-module.exports = app
+// DELETE User
+// DELETE → http://localhost:3000/users/delete/:index
+app.delete("/users/delete/:index", (req, res) => {
+    let { index } = req.params;
+
+    users.splice(index, 1);
+
+    return res.status(200).json({
+        message: "User deleted successfully"
+    });
+});
+
+
+// Export app
+module.exports = app; 
