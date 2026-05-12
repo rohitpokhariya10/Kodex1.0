@@ -1,6 +1,8 @@
 const express = require("express");
 const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+
 
 const authRouter = express.Router();
 
@@ -25,12 +27,15 @@ authRouter.post("/register", async (req, res) => {
         message: `${field} already exists`,
       });
     }
+    
 
+    //convert password into hash
+    let hash = crypto.createHash("md5").update(password).digest("hex")
     // Create new user
     let user = await userModel.create({
       username,
       email,
-      password,
+      password:hash,
     });
 
     // Create JWT token
@@ -72,5 +77,52 @@ authRouter.get("/protected", (req, res) => {
     cookies: req.cookies,
   });
 });
+
+//2. login route-->/api/auth/login
+authRouter.post("/login" , async (req,res)=>{
+  try{
+    let {username , email , password} = req.body;
+
+  let userExist = await userModel.findOne({
+    $or:[{email},{username}]
+  })
+  //if user ne register nhi kara hoga
+  if(!userExist){
+    return res.status(404).json({
+      message:"User not found"
+    })
+  }
+  //bcrypt.compare(normalPassword, hashedPassword)
+  let checkUserPassword = userExist.password === crypto.createHash("md5").update(password).digest("hex")
+
+  if(!checkUserPassword){
+    return res.status(401).json({
+      message:"Invalid Password"
+    })
+  }
+
+  const token = jwt.sign(
+    {
+      id:userExist._id
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn :"1h"
+    }
+  )
+   
+  res.cookie("Jwt_token" , token)
+  return res.status(200).json({
+    message:"User logined successfully",
+    
+  })
+  }
+  catch(error){
+    console.error("Error in login route --->" , error)
+    return res.status(500).json({
+      message:"Internal server error"
+    })
+  }
+})
 
 module.exports = authRouter;
