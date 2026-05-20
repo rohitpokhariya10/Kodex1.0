@@ -102,4 +102,32 @@ let refreshAccessTokenService = async (data) => {
   return { rT, accessToken, user };
 };
 
-module.exports = { registerUserService, loginUserService, refreshAccessTokenService };
+
+let logOutUserService = async (data)=>{
+   const refreshToken = data;
+
+  if (!refreshToken) {
+    throw new ApiError(401, "Unauthorized request: refresh token is missing");
+  }
+//Database me ek document find karo aur usi time update bhi kar do.
+//Matlab pehle findOne() then save() karne ki jagah, direct ek hi command me kaam ho jata hai.
+  const user = await User.findOneAndUpdate(
+    { refreshToken },
+    {
+      $unset: {
+        refreshToken: 1,
+      },
+    },
+    { new: true }
+  );
+
+  if (!user) {
+    throw new ApiError(401, "Invalid refresh token");
+  }
+
+  
+
+
+}
+
+module.exports = { registerUserService, loginUserService, refreshAccessTokenService , logOutUserService};

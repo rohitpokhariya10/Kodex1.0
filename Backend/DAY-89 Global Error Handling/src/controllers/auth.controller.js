@@ -1,12 +1,14 @@
 const asyncHandler = require("../utils/asyncHandler");
-
 const {
   registerUserService,
   loginUserService,
   refreshAccessTokenService,
+  logOutUserService,
 } = require("../services/auth.service");
+const ApiError = require("../utils/apiError");
+const User = require("../models/user.model");
 
-// Register a new user and set access/refresh tokens in httpOnly cookies.
+//1. Register a new user and set access/refresh tokens in httpOnly cookies.
 const registerController = asyncHandler(async (req, res) => {
   // Service handles validation, user creation, password hashing, and token generation.
   let { refreshToken, accessToken, user } = await registerUserService(req.body);
@@ -35,7 +37,7 @@ const registerController = asyncHandler(async (req, res) => {
     });
 });
 
-// Login an existing user and rotate both tokens.
+//2. Login an existing user and rotate both tokens.
 const loginController = async (req, res) => {
   // Service checks email/password and returns fresh tokens.
   let { accessToken, refreshToken, isUserExist } = await loginUserService(req.body);
@@ -64,7 +66,7 @@ const loginController = async (req, res) => {
     });
 };
 
-// Generate a new access token using the refresh token stored in cookies.
+//3. Generate a new access token using the refresh token stored in cookies.
 const refreshAccessTokenController = async (req, res) => {
   // Service verifies the incoming refresh token and rotates it.
   let { rT, accessToken, user } = await refreshAccessTokenService(req.cookies);
@@ -93,8 +95,39 @@ const refreshAccessTokenController = async (req, res) => {
     });
 };
 
+//4.
+const getMeController =(req, res) => {
+  res.status(200).json({
+    success: true,
+    user: req.user,
+  });
+}
+
+//5. logout Controller
+const logoutController = async (req, res) => {
+ await logOutUserService(req.cookies?.refreshToken);
+  return res
+    .status(200)
+    .clearCookie("accessToken", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    })
+    .clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+    })
+    .json({
+      success: true,
+      message: "User logged out successfully",
+    });
+};
+
 module.exports = {
   registerController,
   loginController,
   refreshAccessTokenController,
+  getMeController,
+  logoutController
 };
