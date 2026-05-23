@@ -40,7 +40,7 @@ const App = () => {
   };
 
   const signInHandler = () => {
-    window.location.href = "https://kodex1-0.onrender.com/api/auth/google/callback";
+    window.location.href = "https://kodex1-0.onrender.com/api/auth/google";
   };
 
   return (
