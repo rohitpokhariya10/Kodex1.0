@@ -21,7 +21,7 @@ const generatePasswordResetToken = ()=>{
     //toString("hex")---> means readable string
     //hex --> hexadecimal
     let rawResetToken = crypto.randomBytes(32).toString("hex");
-    console.log("Password reset Token->" , rawResetToken);
+    //console.log("Password reset Token->" , rawResetToken);
     return rawResetToken;
 
 }
