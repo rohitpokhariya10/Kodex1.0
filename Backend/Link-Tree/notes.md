@@ -37,3 +37,6 @@ Unknown URL request
 → next(error)
 → global errorHandler catches it
 → sends JSON response
+
+#
+![alt text](<Screenshot 2026-06-23 at 8.47.33 AM.png>)
