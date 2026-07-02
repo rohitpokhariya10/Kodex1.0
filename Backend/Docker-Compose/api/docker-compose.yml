@@ -1,0 +1,13 @@
+# YAML me indentation very important hoti hai.
+# Har nested level ke liye usually 2 spaces use karo.
+
+services:
+  backend:
+    build: .
+    volumes:
+      - .:/app
+      #.env image ke andar copy nahi hogi, but container start hote time variables available honge.
+    env_file:
+       .env  
+    ports:
+      - "3000:3000"

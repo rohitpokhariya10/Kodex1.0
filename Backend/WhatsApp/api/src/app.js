@@ -12,7 +12,7 @@ app.use(morgan('dev'));
 app.use("/api" , indexRouter);
 
 //
-app.get("health" , (req,res)=>{
+app.get("/health" , (req,res)=>{
     res.status(200).json({
         message:"Server is healthy",
     })
