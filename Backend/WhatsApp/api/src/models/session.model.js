@@ -22,7 +22,7 @@ const sessionSchema = new mongoose.Schema({
 sessionSchema.pre("save" , async function(){
     if(this.isModified("refreshTokenHash")){
         const salt = await bcrypt.genSalt(10);
-    this.refreshTokenHash = await bcrypt.hash(this.refreshTokenHash , salt);
+    this.refreshTokenHash = await bcrypt.hash(thi.refreshTokenHash , salt);
     }
 })
 
@@ -31,4 +31,4 @@ sessionSchema.methods.compareRefreshToken = async function({refreshToken}){
 }
 
 const Session = mongoose.model("sessions" , sessionSchema);
-export default Session;
+export default sessionSchema;

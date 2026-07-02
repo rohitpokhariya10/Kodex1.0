@@ -1,6 +1,5 @@
 //Database Operations code comes in dao file
-//This file is for User(MODEL) perform operations with Database
-import User from "../models/user.model.js";
+import User from "../models/user.model";
 
 export const createUser = async ({username , email , password})=>{
    let user = await User.create({
